@@ -27,11 +27,12 @@ def multiDiceMod(dice):
 
 #so we have the dice functionality
 #now we need to communicate with discord and get the user input
-
+import os
 import discord
 
 from dotenv import load_dotenv
 load_dotenv()
+#get the token from the .env file
 TOKEN = os.getenv('DISCORD_TOKEN')
 
 client = discord.Client()
