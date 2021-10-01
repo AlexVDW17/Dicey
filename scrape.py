@@ -39,4 +39,18 @@ spell_dict = dict(zip(spell_names, spell_descriptions))
 #now we want to create a dataframe with the spell names and spell descriptions
 spell_df = pd.DataFrame(spell_dict.items(), columns=['Spell Name', 'Spell Description'])
 #now we store the dataframe in a csv file
-spell_df.to_csv('spell_data.csv', index=False)
+#spell_df.to_csv('spell_data.csv', index=False)
+print(len(spell_df))
+import sqlite3
+
+conn = sqlite3.connect('spells.db')
+c = conn.cursor()
+c.execute('CREATE TABLE spells (name VARCHAR, description VARCHAR)')
+conn.commit()
+
+#now we want to store the data in the database
+for index, row in spell_df.iterrows():
+    c.execute('INSERT INTO spells VALUES (?, ?)', (row['Spell Name'], row['Spell Description']))
+    conn.commit()
+
+conn.close()
