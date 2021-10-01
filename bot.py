@@ -1,0 +1,48 @@
+import rolldice
+import spells
+import os
+import discord
+import random
+from dotenv import load_dotenv
+from discord.ext import commands
+load_dotenv()
+#get the token from the .env file
+TOKEN = os.getenv('DISCORD_TOKEN')
+GUILD = os.getenv('DISCORD_GUILD')
+
+#client = discord.Client()
+bot = commands.Bot(command_prefix='!')
+@bot.event
+async def on_ready():
+    for guild in bot.guilds:
+        if guild.name == GUILD:
+            break
+
+    print(
+        f'{bot.user} is connected to the following guild:\n'
+        f'{guild.name}(id: {guild.id})'
+    )
+    
+
+# a bot command that takes in a string of xDy+z where x is the number of dice, y is the number of sides, and z is the modifier
+# then uses the multiDiceMod function to return a result
+@bot.command(name='r', help='rolls a dice given input xDy + z')
+async def roll(ctx, *args):
+    input = ''.join(args)
+    #call the multiDiceMod function
+    result = rolldice.multiDiceMod(input)
+    #send the result
+    await ctx.send(result)
+
+@bot.command(name='s', help='Provides spell information given a spell name')
+async def provideSpell(ctx, *args):
+    input = ' '.join(args)
+    input = input.title()
+    #call the spellInfo function
+    result = spells.findSpell(input)
+    #send the result
+    await ctx.send(result)
+
+
+bot.run(TOKEN)
+
