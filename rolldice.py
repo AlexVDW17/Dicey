@@ -4,11 +4,11 @@ def singleDice(sides):
     return random.randint(1,sides)
 
 #accepts a string of xDy where x is the number of dice and y is the number of sides
-#then uses the singleDice function to return a result
+#then uses the singleDice function to return a result integer
 def multiDice(dice):
     import re
-    #convert all letters to uppercase
-    dice = dice.upper()
+    if dice[0] == 'D':
+        dice = "1" + dice
     dice = re.split('D',dice)
     dice = [int(x) for x in dice]
     result = 0
@@ -19,6 +19,9 @@ def multiDice(dice):
 #a function accepting xDy+z where x is the number of dice, y is the number of sides, and z is the modifier
 #then uses the multiDice function to return a result
 def multiDiceMod(dice):
+    dice = dice.upper()
+    if not isValidInput(dice):
+        return "Invalid Format"
     import re
     dice = re.split('\+',dice)
     #call the multiDice function
@@ -27,3 +30,16 @@ def multiDiceMod(dice):
     if len(dice) > 1:
         result += int(dice[1])
     return result
+
+#ensures the input is of the form Dy, xDy, Dy+z, or xDy+z
+def isValidInput(input):
+    import re
+    if re.match('^[0-9]*D[0-9]+$',input):
+        return True
+    if re.match('^[0-9]+D[0-9]+$',input):
+        return True
+    if re.match('^[0-9]*D[0-9]+\+[0-9]+$',input):
+        return True
+    if re.match('^[0-9]+D[0-9]+\+[0-9]+$',input):
+        return True
+    return False
