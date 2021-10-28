@@ -7,6 +7,9 @@ from dotenv import load_dotenv
 from discord.ext import commands
 load_dotenv()
 #get the token from the .env file
+#TO USE: CREATE A .env FILE IN THE SAME FOLDER AS THIS FILE with the following contents:
+#DISCORD_TOKEN=your_token_here
+#DISCORD_GUILD=Your_guild_name_here
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 
