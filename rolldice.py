@@ -7,6 +7,8 @@ def singleDice(sides):
 #then uses the singleDice function to return a result
 def multiDice(dice):
     import re
+    #convert all letters to uppercase
+    dice = dice.upper()
     dice = re.split('D',dice)
     dice = [int(x) for x in dice]
     result = 0

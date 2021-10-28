@@ -32,6 +32,8 @@ async def roll(ctx, *args):
     #call the multiDiceMod function
     result = rolldice.multiDiceMod(input)
     #send the result
+    print("[Roll] Command: " , input)
+    print("[Roll] Result: " , result)
     await ctx.send(result)
 
 @bot.command(name='s', help='Provides spell information given a spell name')
