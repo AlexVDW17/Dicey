@@ -33,7 +33,7 @@ async def on_ready():
 async def roll(ctx, *args):
     input = ''.join(args)
     #call the multiDiceMod function
-    result = rolldice.multiDiceMod(input)
+    result = rolldice.rollDice(input)
     #send the result
     print("[Roll] Command: " , input)
     print("[Roll] Result: " , result)

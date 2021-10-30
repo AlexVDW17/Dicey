@@ -1,3 +1,12 @@
+
+    #if the first letter is an a, remove the a and call the multiDiceMod function
+def rollDice(dice):
+    if dice[0].upper() == 'A':
+        return multiDiceAdv(dice[1:], True)
+    if dice[0].upper() == 'D':
+        return multiDiceAdv(dice[1:], False)    
+    return multiDiceMod(dice)
+
 #accepts an integer and returns a result between 1 and that input
 def singleDice(sides):
     import random
@@ -15,6 +24,14 @@ def multiDice(dice):
     for i in range(dice[0]):
         result += singleDice(dice[1])
     return result
+
+def multiDiceAdv(dice, adv):
+    first = multiDiceMod(dice)
+    second = multiDiceMod(dice)
+    if adv:
+        return max(first, second)
+    else:
+        return min(first, second)
 
 #a function accepting xDy+z where x is the number of dice, y is the number of sides, and z is the modifier
 #then uses the multiDice function to return a result
