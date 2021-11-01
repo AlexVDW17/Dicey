@@ -1,5 +1,6 @@
 import rolldice
 import spells
+import characters
 import os
 import discord
 import random
@@ -29,7 +30,7 @@ async def on_ready():
 
 # a bot command that takes in a string of xDy+z where x is the number of dice, y is the number of sides, and z is the modifier
 # then uses the multiDiceMod function to return a result
-@bot.command(name='r', help='rolls a dice given input xDy + z')
+@bot.command(name='r', help='rolls a dice given input xDy + z. use a xDy +z for advantage and d xDy + z for disadvantage')
 async def roll(ctx, *args):
     input = ''.join(args)
     #call the multiDiceMod function
@@ -45,6 +46,13 @@ async def provideSpell(ctx, *args):
     input = input.title()
     #call the spellInfo function
     result = spells.findSpell(input)
+    #send the result
+    await ctx.send(result)
+
+@bot.command(name='c', help='Provides character information give a name')
+async def character(ctx, *args):
+    input = ' '.join(args[1:])
+    result = characters.perform(input, args[1])
     #send the result
     await ctx.send(result)
 
