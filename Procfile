@@ -1,1 +1,1 @@
-ECHO is on.
+python bot.py
