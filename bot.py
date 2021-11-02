@@ -52,10 +52,9 @@ async def provideSpell(ctx, *args):
 @bot.command(name='c', help='Provides character information give a name')
 async def character(ctx, *args):
     input = ' '.join(args[1:])
-    result = characters.perform(input, args[1])
+    result = characters.perform(input, args[0])
     #send the result
     await ctx.send(result)
-
 
 bot.run(TOKEN)
 
