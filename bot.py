@@ -15,8 +15,6 @@ load_dotenv()
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
-print(TOKEN)
-#client = discord.Client()
 bot = commands.Bot(command_prefix='!')
 @bot.event
 async def on_ready():
@@ -35,9 +33,7 @@ async def on_ready():
 @bot.command(name='r', help='rolls a dice given input xDy + z. use a xDy +z for advantage and d xDy + z for disadvantage')
 async def roll(ctx, *args):
     input = ''.join(args)
-    #call the multiDiceMod function
     result = rolldice.rollDice(input)
-    #send the result
     print("[Roll] Command: " , input)
     print("[Roll] Result: " , result)
     await ctx.send(result)
@@ -46,9 +42,7 @@ async def roll(ctx, *args):
 async def provideSpell(ctx, *args):
     input = ' '.join(args)
     input = input.title()
-    #call the spellInfo function
     result = spells.findSpell(input)
-    #send the result
     await ctx.send(result)
 
 @bot.command(name='c', help='Provides character information give a name')
