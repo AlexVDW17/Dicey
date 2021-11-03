@@ -1,3 +1,4 @@
+from re import T
 import rolldice
 import spells
 import characters
@@ -13,6 +14,7 @@ load_dotenv()
 #DISCORD_GUILD=Your_guild_name_here
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
+print(TOKEN)
 
 #client = discord.Client()
 bot = commands.Bot(command_prefix='!')
