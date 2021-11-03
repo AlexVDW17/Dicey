@@ -12,10 +12,10 @@ load_dotenv()
 #TO USE: CREATE A .env FILE IN THE SAME FOLDER AS THIS FILE with the following contents:
 #DISCORD_TOKEN=your_token_here
 #DISCORD_GUILD=Your_guild_name_here
+
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 print(TOKEN)
-
 #client = discord.Client()
 bot = commands.Bot(command_prefix='!')
 @bot.event
