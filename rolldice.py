@@ -1,10 +1,17 @@
 
     #if the first letter is an a, remove the a and call the multiDiceMod function
 def rollDice(dice):
+    import re
     if dice[0].upper() == 'A':
         return multiDiceAdv(dice[1:], True)
-    if dice[0].upper() == 'D':
-        return multiDiceAdv(dice[1:], False)    
+    if dice[0].upper() == 'D' and re.match('^D[0-9]*D[0-9]+$',dice):
+        return multiDiceAdv(dice[1:], False)
+    if re.match('^[1-9][0-9]*\*[0-9]*D[0-9]+$',dice):
+        dice  = dice.split('*')
+        returning  = ""
+        for i in range(int(dice[0])):
+            returning += str(multiDiceMod(dice[1])) + " "
+        return returning    
     return multiDiceMod(dice)
 
 #accepts an integer and returns a result between 1 and that input
@@ -53,10 +60,6 @@ def isValidInput(input):
     import re
     if re.match('^[0-9]*D[0-9]+$',input):
         return True
-    if re.match('^[0-9]+D[0-9]+$',input):
-        return True
     if re.match('^[0-9]*D[0-9]+\+[0-9]+$',input):
-        return True
-    if re.match('^[0-9]+D[0-9]+\+[0-9]+$',input):
         return True
     return False
